@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>GifTastic</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./javascript.js"></script>
+  <!-- <script src="./javascript.js"></script> -->
 </head>
 
 <body onload="setup();">
@@ -40,13 +40,13 @@ $("#buttonDiv").on("click", function() {
 </script> -->
 
 <script>
-var categArray=["cat", "dog", "bird", "turtle", "fish", "rabbit"];
-var theCategory = "";
+var topics=["cat", "dog", "bird", "turtle", "fish", "rabbit"];
+var theCategory = null;
 //create buttons wiht onclick functionality that calls populateGifs
 
 function setup(){
-    for(i=0;i<categArray.length;i++){
-        createButtons(categArray[i]);
+    for(i=0;i<topics.length;i++){
+        createButtons(topics[i]);
     };
 
 
@@ -74,9 +74,9 @@ function setup(){
 
 
 function createButtons(theCategory){
-    var theCategory = categArray[i];
+    var theCategory = topics[i];
     var theButton = "<button onclick='populateGifs(theCategory);'>" + theCategory + "</button>";
-    console.log(categArray[i]);
+    console.log(topics[i]);
     $('#buttonsDiv').append(theButton);
 };
 
@@ -84,7 +84,7 @@ function createButtons(theCategory){
 //create function that populates gifs of category with array info (rating)
 
 function populateGifs(theCategory){
-    // var theCategory = categArray[i];
+    var theCategory = topics[i];
     // $('#gifs-appear-here').append()
 
         var person = $(this).attr("data-person");
@@ -110,3 +110,19 @@ function populateGifs(theCategory){
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

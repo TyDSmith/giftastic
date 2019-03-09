@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Giphytastic</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var topics=['dogs','cats','frogs','rabbits','fish']
+
+        function setup(){
+            console.log(topics);
+            
+            for(i=0;i<topics.length;i++){
+                var topicButton = "<button id='" + topics[i] + "'>"+topics[i]+"</button>"
+                $('#divs-go-here').append(topicButton);
+            }
+        };
+
+
+
+    </script>
+
+
+
+</head>
+<body onload="setup();">
+    <div id="divs-go-here"></div>
+
+
+</body>
+
+</html>
