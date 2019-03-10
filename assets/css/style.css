@@ -1,4 +1,29 @@
+#main-container{
+    background: rgba(216, 216, 216, 0.247);
+    padding: 20px;
+    border: solid 1px grey;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+#divs-go-here{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#form{
+    text-align: center;
+}
+
+#animal-input{
+    width: 75%;
+    line-height: 20px;
+    font-size: 20px;
+}
+
 .rating-class{
-    font-size: 2em;
-    color: green;
+    font-size: 1.2em;
+
+    margin: 0px;
+    margin-bottom: 20px;
 }
