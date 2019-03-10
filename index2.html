@@ -5,6 +5,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
+        //Using "animalArray" instead of "topics as the assignment suggests"
         var animalArray=['dogs','cats','frogs','rabbits','fish']
 
         function setup(){
@@ -43,6 +44,9 @@
                         var p = $("<p>").text("Rating: " + results[i].rating);
                         var animalImg = $("<img>");
                         console.log(response);
+                        
+                        p.attr("class", "rating-class");
+
 
                         animalImg.attr("src", results[i].images.original_still.url);
                         animalImg.attr("data-still", results[i].images.original_still.url);
@@ -50,8 +54,10 @@
                         animalImg.attr("data-state", "still");
                         animalImg.attr("class", "gif");
                         animalImg.attr("width", "150");
-                        animalDiv.append(p);
+                    
+                        animalDiv.attr("class","animal-div-class");
                         animalDiv.append(animalImg);
+                        animalDiv.append(p);
                         $("#animal-gifs-here").append(animalDiv);
                     }
                 })
@@ -59,9 +65,32 @@
         };
 
 
+	function changeState(){
+		var state = $(this).attr("data-state");
+		var animateImage = $(this).attr("data-animate");
+		var stillImage = $(this).attr("data-still");
+
+		if (state == "still") {
+			$(this).attr("src", animateImage);
+			$(this).attr("data-state", "animate");
+		}
+
+		else if (state == "animate") {
+			$(this).attr("src", stillImage);
+			$(this).attr("data-state", "still");
+		}
+	}
+
+	$(document).on("click", ".gif", changeState);
+
     </script>
 
+<style>
+.rating-class{
+    font-size: 2em;
+}
 
+</style>
 
 </head>
 <body onload="setup();">
