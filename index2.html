@@ -5,17 +5,58 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        var topics=['dogs','cats','frogs','rabbits','fish']
+        var animalArray=['dogs','cats','frogs','rabbits','fish']
 
         function setup(){
-            console.log(topics);
+            console.log(animalArray);
             
-            for(i=0;i<topics.length;i++){
-                var topicButton = "<button id='" + topics[i] + "'>"+topics[i]+"</button>"
+            for ( i = 0; i < animalArray.length; i++){
+                var topicButton = "<button id='" + animalArray[i] + "' animalData = '" + animalArray[i]+"' onclick='showGIFs();'>"+animalArray[i]+"</button>"
                 $('#divs-go-here').append(topicButton);
             }
+            showGIFs();
         };
 
+        function showGIFs(){
+            $("button").on("click", function(){
+            //console.log('clicked');
+    
+                var animal = $(this).attr("animalData");
+                //console.log(animalData); 
+                console.log(animal); 
+
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+                    animal + "&api_key=AzZ29qUdXJ4MDmPGaD39CQ9EQhkPMTi7&limit=10"
+                    
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).done(function (response) {
+                    var results = response.data;
+
+                    //console.log(response.data);
+                    $("#animal-gifs-here").empty();
+
+
+                    for (var i = 0; i < 10; i++) {
+                        var animalDiv = $("<div>");
+                        var p = $("<p>").text("Rating: " + results[i].rating);
+                        var animalImg = $("<img>");
+                        console.log(response);
+
+                        animalImg.attr("src", results[i].images.original_still.url);
+                        animalImg.attr("data-still", results[i].images.original_still.url);
+                        animalImg.attr("data-animate", results[i].images.original.url);
+                        animalImg.attr("data-state", "still");
+                        animalImg.attr("class", "gif");
+                        animalImg.attr("width", "150");
+                        animalDiv.append(p);
+                        animalDiv.append(animalImg);
+                        $("#animal-gifs-here").append(animalDiv);
+                    }
+                })
+            })
+        };
 
 
     </script>
@@ -25,7 +66,7 @@
 </head>
 <body onload="setup();">
     <div id="divs-go-here"></div>
-
+    <div id="animal-gifs-here"></div>
 
 </body>
 
