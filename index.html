@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Giphytastic</title>
-
+    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         //Using "animalArray" instead of "topics as the assignment suggests"
@@ -11,17 +11,36 @@
         function setup(){
             console.log(animalArray);
             
+            showButtons();
+            showGIFs();
+        
+            // Adding a button for animal entered
+            $("#add-animal").on("click", function () {
+                event.preventDefault();
+                var newAnimal = $("#animal-input").val().trim();
+                animalArray.push(newAnimal);
+                showButtons();
+                console.log(newAnimal);
+                return;
+            });
+        };
+
+
+        function showButtons(){
+            $("#divs-go-here").empty();
             for ( i = 0; i < animalArray.length; i++){
                 var topicButton = "<button id='" + animalArray[i] + "' animalData = '" + animalArray[i]+"' onclick='showGIFs();'>"+animalArray[i]+"</button>"
                 $('#divs-go-here').append(topicButton);
             }
-            showGIFs();
         };
+
+
+        
+
 
         function showGIFs(){
             $("button").on("click", function(){
             //console.log('clicked');
-    
                 var animal = $(this).attr("animalData");
                 //console.log(animalData); 
                 console.log(animal); 
@@ -53,7 +72,7 @@
                         animalImg.attr("data-animate", results[i].images.original.url);
                         animalImg.attr("data-state", "still");
                         animalImg.attr("class", "gif");
-                        animalImg.attr("width", "150");
+                        animalImg.attr("width", "250");
                     
                         animalDiv.attr("class","animal-div-class");
                         animalDiv.append(animalImg);
@@ -85,16 +104,15 @@
 
     </script>
 
-<style>
-.rating-class{
-    font-size: 2em;
-}
-
-</style>
 
 </head>
 <body onload="setup();">
     <div id="divs-go-here"></div>
+        <form id="form">
+            <label for="animal-input">Add an Animal!</label><br>
+            <input type="text" id="animal-input">
+            <input id="add-animal" type="submit" value="Submit">
+        </form>
     <div id="animal-gifs-here"></div>
 
 </body>
