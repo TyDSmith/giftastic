@@ -11,6 +11,21 @@
     text-align: center;
 }
 
+#divs-go-here button{
+    font-size: 32px;
+    text-align: center;
+    border-radius: 4px;
+    background: rgba(88, 208, 238, 0.699);
+    margin: 2px;
+}
+
+#add-animal{
+    background: rgba(42, 233, 42, 0.637);
+    font-size: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
+
 #form{
     text-align: center;
 }
